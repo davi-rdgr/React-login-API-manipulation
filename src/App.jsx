@@ -1,12 +1,12 @@
 import { Outlet } from 'react-router-dom'
-
+import Nav from './components/Nav.jsx'
+import Footer from './components/Footer.jsx'
 export default function App() {
   return (
-    <div>
-      <h1>olá mundo</h1>
-
+    <>
+      <Nav />
       <Outlet />
-
-    </div>
+      <Footer />
+    </>
   )
 }
