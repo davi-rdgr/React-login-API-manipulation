@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react"
+import ModalActions from "../components/ModalActions"
 export default function Produtos() {
 
     const [produtosAPI, setProdutosAPI] = useState([])
+    const [open, setOpen] = useState(false)
 
     //função para escluir determinado produto da minha API
     const handleDelete = (id) => {
@@ -29,8 +31,11 @@ export default function Produtos() {
         <section>
 
             <button>Cadastrar</button>
-
             <h1>Lista de Jogos cadastrados!</h1>
+
+            {open ? <ModalActions open={true} setOpen={setOpen}/> : ""}
+
+            <button onClick={() => setOpen(true)}>OPEN-MODAL</button>
 
             <table>
                 <thead>
