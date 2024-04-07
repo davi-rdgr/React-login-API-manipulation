@@ -1,27 +1,21 @@
 {
   "produtos": [
     {
-      "id": "1",
-      "nome": "Residente Evil 4: Remake",
-      "preco": 150,
-      "desc": "Jogo de zumbi em terceira pessoa"
-    },
-    {
       "id": "2",
       "nome": "Super Mário Bros",
-      "preco": 80.5,
+      "preco": "120.50",
       "desc": "Jogo de bater cabeça em bloquinho"
     },
     {
       "id": "3",
       "nome": "Red Dead Redemption 2",
-      "preco": 250,
+      "preco": "250.59",
       "desc": "Jogo de Cowboy"
     },
     {
       "id": "4",
       "nome": "Rainbow Six Siege",
-      "preco": 95.5,
+      "preco": "20.00",
       "desc": "Jogo FPS tático"
     }
   ]

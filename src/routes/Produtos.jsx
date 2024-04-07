@@ -4,6 +4,12 @@ export default function Produtos() {
 
     const [produtosAPI, setProdutosAPI] = useState([])
     const [open, setOpen] = useState(false)
+    const [prodId, setProdId] = useState(0)
+
+    const handleEdit = (id) => {
+        setProdId(id)
+        setOpen(true)
+    }
 
     //função para escluir determinado produto da minha API
     const handleDelete = (id) => {
@@ -16,15 +22,17 @@ export default function Produtos() {
 
     useEffect(
         () => {
-            //fazer requisição http para a URL da Api
-            fetch("http://localhost:5000/produtos")
-                //se a requisição for bem sucedida, transformar o conteúdo em .json
-                .then((resp) => resp.json())
-                //onde quero guardar as respostas? -> (setProdutosAPI)
-                .then((resp) => setProdutosAPI(resp))
-                //se der algo errado, avisa no terminal
-                .catch((error) => console.log(error))
-        }, []
+            if (!open) {
+                //fazer requisição http para a URL da Api
+                fetch("http://localhost:5000/produtos")
+                    //se a requisição for bem sucedida, transformar o conteúdo em .json
+                    .then((resp) => resp.json())
+                    //onde quero guardar as respostas? -> (setProdutosAPI)
+                    .then((resp) => setProdutosAPI(resp))
+                    //se der algo errado, avisa no terminal
+                    .catch((error) => console.log(error))
+            }
+        }, [open]
     )
 
     return (
@@ -33,9 +41,9 @@ export default function Produtos() {
             <button>Cadastrar</button>
             <h1>Lista de Jogos cadastrados!</h1>
 
-            {open ? <ModalActions open={true} setOpen={setOpen}/> : ""}
+            {open ? <ModalActions open={true} id={prodId} setOpen={setOpen} /> : ""}
 
-            <button onClick={() => setOpen(true)}>OPEN-MODAL</button>
+
 
             <table>
                 <thead>
@@ -54,7 +62,7 @@ export default function Produtos() {
                         <td>{prod.nome}</td>
                         <td>{prod.desc}</td>
                         <td>{prod.preco}</td>
-                        <td><button onClick={handleDelete.bind(this, prod.id)}>deletar</button></td>
+                        <td><button onClick={() => handleEdit(prod.id)}>Editar</button> | <button onClick={handleDelete.bind(this, prod.id)}>deletar</button></td>
                     </tr>
                 )))}
                 <tfoot>
